@@ -1,0 +1,10 @@
+LOAD Student
+StudentFemale <- SELECT Stud_sex == 1 FROM Student
+StudentFemaleFilter <- SELECT Stud_age > 16 FROM StudentFemale
+StudentFemaleIDAge <- PROJECT Stud_Id, Stud_age FROM StudentFemaleFilter
+RENAME Stud_Id TO stud_id FROM StudentFemaleIDAge
+RENAME Stud_age TO stud_age FROM StudentFemaleIDAge
+CLEAR Student
+CLEAR StudentFemale
+CLEAR StudentFemaleFilter
+PRINT StudentFemaleIDAge

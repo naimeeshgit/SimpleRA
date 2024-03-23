@@ -1,0 +1,15 @@
+LOAD Student
+LOAD Advisor
+RENAME Advisor_id TO Adv_Id FROM Student
+StudAdv1 <- CROSS Student Advisor
+StudAdv2 <- SELECT Student_Adv_Id == Advisor_Adv_Id FROM StudAdv1
+StudAdv3 <- SELECT Adv_age > 40 FROM StudAdv2
+StudAdv4 <- PROJECT Stud_Id, Student_Adv_Id FROM StudAdv3
+RENAME Stud_Id TO stud_id FROM StudAdv4
+RENAME Student_Adv_Id TO adv_id FROM StudAdv4
+CLEAR Student
+CLEAR Advisor
+CLEAR StudAdv1
+CLEAR StudAdv2
+CLEAR StudAdv3
+PRINT StudAdv4
